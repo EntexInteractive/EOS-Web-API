@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>EpicGames.Web</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>EOS-Web-API</Title>
+    <Company>Entex Interactive, LLC</Company>
+    <Authors>$(Company)</Authors>
+    <Copyright>Copyright $(Company). All rights reserved.</Copyright>
+    <PackageProjectUrl>https://github.com/EntexInteractive/EOS-Web-API</PackageProjectUrl>
+    <Description>A CSharp wrapper for the EOS Web API.</Description>
+    <RepositoryUrl>https://github.com/EntexInteractive/EOS-Web-API.git</RepositoryUrl>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>$(AssemblyVersion)</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DocumentationFile>bin\Release\EOS-Web-API.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+</Project>
