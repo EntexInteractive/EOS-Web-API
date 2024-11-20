@@ -2,13 +2,13 @@
 
 using Newtonsoft.Json;
 
-namespace EpicGames.Web.Responses
+namespace EpicGames.Web.Models
 {
     /// <summary>
-    /// Represents an access token response.
+    /// Represents an access token.
     /// <para><seealso href="https://dev.epicgames.com/docs/web-api-ref/connect-web-api#example-request"/></para>
     /// </summary>
-    public sealed class TokenResponse
+    public sealed class Token
     {
         #region Properties
 
@@ -65,17 +65,10 @@ namespace EpicGames.Web.Responses
         #endregion
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TokenResponse"/> class.
-        /// </summary>
-        public TokenResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TokenResponse"/> class.
+        /// Initializes a new instance of the <see cref="Token"/> class.
         /// </summary>
         [JsonConstructor]
-        public TokenResponse(string access_token, string expires_at, string nouce, string organization_id, string product_id, string sandbox_id, string deployment_id, string organization_user_id, string product_user_id, string id_token)
+        public Token(string access_token, string expires_at, string nouce, string organization_id, string product_id, string sandbox_id, string deployment_id, string organization_user_id, string product_user_id, string id_token)
         {
             AccessToken = access_token;
             ExpiresAt = DateTime.Parse(expires_at);
@@ -87,6 +80,17 @@ namespace EpicGames.Web.Responses
             OrganizationUserId = organization_user_id;
             ProductId = product_user_id;
             IdToken = id_token;
+        }
+
+        /// <summary>
+        /// Creates a null <see cref="Token"/>.
+        /// </summary>
+        public static Token Null
+        {
+            get
+            {
+                return new Token(null, null, null, null, null, null, null, null, null, null);
+            }
         }
     }
 }
