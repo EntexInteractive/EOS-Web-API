@@ -41,7 +41,7 @@ namespace EpicGames.Web.Interfaces
         /// <para><seealso href="https://dev.epicgames.com/docs/web-api-ref/player-reports-web-apis#sending-new-player-reports"/></para>
         /// </summary>
         /// <returns>True if successful, otherwise false.</returns>
-        public async Task<bool> SendNewPlayerReport(PlayerReport report)
+        public async Task<bool> SendNewPlayerReport(Report report)
         {
             Dictionary<string, string> body = new Dictionary<string, string>();
             body.Add("reportingPlayerId", report.ReportingPlayerId);
@@ -61,9 +61,9 @@ namespace EpicGames.Web.Interfaces
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<PlayerReport[]> GetPlayerReportsAsync(string deploymentId)
+        public async Task<Report[]> GetPlayerReportsAsync(string deploymentId)
         {
-            List<PlayerReport> reportList = new List<PlayerReport>();
+            List<Report> reportList = new List<Report>();
             using HttpRequestMessage request = new(HttpMethod.Get, $"{_url}/player-reports/v1/report/{deploymentId}?endTime={DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")}")
             {
                 Headers = { Authorization = new AuthenticationHeaderValue("Bearer", _accessToken) }
@@ -73,15 +73,15 @@ namespace EpicGames.Web.Interfaces
             JObject jsonObject = JObject.Parse(await response.Content.ReadAsStringAsync());
             foreach(JObject item in jsonObject["elements"])
             {
-                reportList.Add(new PlayerReport(item));
+                reportList.Add(new Report(item));
             }
 
             return reportList.ToArray();
         }
 
-        public async Task<PlayerReport[]> GetPlayerReportsAsync(string deploymentId, string reportedPlayerId)
+        public async Task<Report[]> GetPlayerReportsAsync(string deploymentId, string reportedPlayerId)
         {
-            List<PlayerReport> reportList = new List<PlayerReport>();
+            List<Report> reportList = new List<Report>();
             using HttpRequestMessage request = new(HttpMethod.Get, $"{_url}/player-reports/v1/report/{deploymentId}?reportedPlayerId={reportedPlayerId}")
             {
                 Headers = { Authorization = new AuthenticationHeaderValue("Bearer", _accessToken) }
@@ -91,15 +91,15 @@ namespace EpicGames.Web.Interfaces
             JObject jsonObject = JObject.Parse(await response.Content.ReadAsStringAsync());
             foreach (JObject item in jsonObject["elements"])
             {
-                reportList.Add(new PlayerReport(item));
+                reportList.Add(new Report(item));
             }
 
             return reportList.ToArray();
         }
 
-        public async Task<PlayerReport[]> GetPlayerReportsAsync(string deploymentId, ReportReason reason)
+        public async Task<Report[]> GetPlayerReportsAsync(string deploymentId, ReportReason reason)
         {
-            List<PlayerReport> reportList = new List<PlayerReport>();
+            List<Report> reportList = new List<Report>();
             using HttpRequestMessage request = new(HttpMethod.Get, $"{_url}/player-reports/v1/report/{deploymentId}?reasonId={(int)reason}")
             {
                 Headers = { Authorization = new AuthenticationHeaderValue("Bearer", _accessToken) }
@@ -109,7 +109,7 @@ namespace EpicGames.Web.Interfaces
             JObject jsonObject = JObject.Parse(await response.Content.ReadAsStringAsync());
             foreach (JObject item in jsonObject["elements"])
             {
-                reportList.Add(new PlayerReport(item));
+                reportList.Add(new Report(item));
             }
 
             return reportList.ToArray();

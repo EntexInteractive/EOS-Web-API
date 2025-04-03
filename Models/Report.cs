@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EpicGames.Web.Models
 {
-    public class PlayerReport
+    public class Report
     {
         /// <summary>
         /// The game EOS productId.
@@ -57,7 +57,7 @@ namespace EpicGames.Web.Models
         public string? Context { get; set; } = null;
 
 
-        public PlayerReport(string reportingPlayerId, string reportedPlayerId, ReportReason reason)
+        public Report(string reportingPlayerId, string reportedPlayerId, ReportReason reason)
         {
             ReportingPlayerId = reportingPlayerId;
             ReportedPlayerId = reportedPlayerId;
@@ -66,7 +66,7 @@ namespace EpicGames.Web.Models
         }
 
         [JsonConstructor]
-        public PlayerReport(string productId, string sandboxId, string deploymentId, string reportingPlayerId, string reportedPlayerId, string time, int reasonId, string message, string context)
+        public Report(string productId, string sandboxId, string deploymentId, string reportingPlayerId, string reportedPlayerId, string time, int reasonId, string message, string context)
         {
             ProductId = productId;
             SandboxId = sandboxId;
@@ -79,7 +79,7 @@ namespace EpicGames.Web.Models
             Context = context;
         }
 
-        public PlayerReport(JObject json)
+        public Report(JObject json)
         {
             ProductId = (string)json[nameof(ProductId)];
             SandboxId = (string)json[nameof(SandboxId)];
