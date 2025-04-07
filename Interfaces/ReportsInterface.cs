@@ -41,7 +41,7 @@ namespace EpicGames.Web.Interfaces
         /// <para><seealso href="https://dev.epicgames.com/docs/web-api-ref/player-reports-web-apis#sending-new-player-reports"/></para>
         /// </summary>
         /// <returns>True if successful, otherwise false.</returns>
-        public async Task<bool> SendNewPlayerReport(Report report)
+        public async Task<bool> SendNewPlayerReportAsync(Report report)
         {
             Dictionary<string, string> body = new Dictionary<string, string>();
             body.Add("reportingPlayerId", report.ReportingPlayerId);
@@ -61,6 +61,13 @@ namespace EpicGames.Web.Interfaces
             return response.IsSuccessStatusCode;
         }
 
+        /// <summary>
+        /// Finds player reports from a deployment id. 
+        /// <para>The client policy used must have the following permission: 'playerreports:findReportsForAnyUser'</para>
+        /// <para><seealso href="https://dev.epicgames.com/docs/web-api-ref/player-reports-web-apis#find-player-reports"/></para>
+        /// </summary>
+        /// <param name="deploymentId"></param>
+        /// <returns>An array of found <see cref="Report"/>s.</returns>
         public async Task<Report[]> GetPlayerReportsAsync(string deploymentId)
         {
             List<Report> reportList = new List<Report>();
@@ -79,6 +86,14 @@ namespace EpicGames.Web.Interfaces
             return reportList.ToArray();
         }
 
+        /// <summary>
+        /// Finds player reports from a deployment id and a reported player id. 
+        /// <para>The client policy used must have the following permission: 'playerreports:findReportsForAnyUser'</para>
+        /// <para><seealso href="https://dev.epicgames.com/docs/web-api-ref/player-reports-web-apis#find-player-reports"/></para>
+        /// </summary>
+        /// <param name="deploymentId"></param>
+        /// <param name="reportedPlayerId"></param>
+        /// <returns>An array of found <see cref="Report"/>s.</returns>
         public async Task<Report[]> GetPlayerReportsAsync(string deploymentId, string reportedPlayerId)
         {
             List<Report> reportList = new List<Report>();
@@ -97,6 +112,14 @@ namespace EpicGames.Web.Interfaces
             return reportList.ToArray();
         }
 
+        /// <summary>
+        /// Finds player reports from a deployment id and <see cref="ReportReason"/>.
+        /// <para>The client policy used must have the following permission: 'playerreports:findReportsForAnyUser'</para>
+        /// <para><seealso href="https://dev.epicgames.com/docs/web-api-ref/player-reports-web-apis#find-player-reports"/></para>
+        /// </summary>
+        /// <param name="deploymentId"></param>
+        /// <param name="reason"></param>
+        /// <returns>An array of found <see cref="Report"/>s.</returns>
         public async Task<Report[]> GetPlayerReportsAsync(string deploymentId, ReportReason reason)
         {
             List<Report> reportList = new List<Report>();

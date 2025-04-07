@@ -81,15 +81,15 @@ namespace EpicGames.Web.Models
 
         public Report(JObject json)
         {
-            ProductId = (string)json[nameof(ProductId)];
-            SandboxId = (string)json[nameof(SandboxId)];
-            DeploymentId = (string)json[nameof(DeploymentId)];
-            ReportingPlayerId = (string)json[nameof(ReportingPlayerId)];
-            ReportedPlayerId = (string)json[nameof(ReportedPlayerId)];
+            ProductId = (string)json["productId"];
+            SandboxId = (string)json["sandboxId"];
+            DeploymentId = (string)json["deploymentId"];
+            ReportingPlayerId = (string)json["reportingPlayerId"];
+            ReportedPlayerId = (string)json["reportedPlayerId"];
             Timestamp = DateTime.Parse((string)json["time"]);
             Reason = (ReportReason)(int)json["reasonId"];
-            Message = (string)json[nameof(Message)];
-            Context = (string)json[nameof(Context)];
+            Message = (string)json["message"];
+            Context = (string)json["context"];
         }
     }
 }
