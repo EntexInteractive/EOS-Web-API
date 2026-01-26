@@ -14,6 +14,8 @@
     <RepositoryUrl>https://github.com/EntexInteractive/EOS-Web-API.git</RepositoryUrl>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <FileVersion>$(AssemblyVersion)</FileVersion>
+    <Configurations>Debug;Release;Analyze</Configurations>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
